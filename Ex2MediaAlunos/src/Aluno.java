@@ -1,4 +1,3 @@
-
 public class Aluno {
     public int id;
     public static int proximoID = 1;
@@ -10,6 +9,20 @@ public class Aluno {
         this.id    = this.proximoID++;
         this.nome  = n;
         this.notas = _notas;
+    }
+    
+    public String getSituacao() {
+        
+       double media = mediaAluno();
+       
+        if (media < 3) 
+            return "Reprovado(a)";
+        
+        else if (media < 7) 
+            return "em Recuperação";
+       
+        return "Aprovado(a)";
+        
     }
     
     public double[] getNotas() { 

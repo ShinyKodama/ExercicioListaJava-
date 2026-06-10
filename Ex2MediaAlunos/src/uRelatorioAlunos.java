@@ -20,7 +20,6 @@ public class uRelatorioAlunos extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(uRelatorioAlunos.class.getName());
 
     public uRelatorioAlunos(Turma turma) {
-        
         initComponents();
         
         btnVoltar.addActionListener(evt -> this.dispose());
@@ -37,10 +36,11 @@ public class uRelatorioAlunos extends javax.swing.JFrame {
                 
                 modeloTabela.addRow(new Object[]{
                     al.id,
-                    al.getNome(), // Certifique-se de adicionar o método public String getNome() { return nome; } na classe Aluno
+                    al.getNome(), 
                     String.format("%.2f", n1),
                     String.format("%.2f", n2),
-                    String.format("%.2f", al.mediaAluno())
+                    String.format("%.2f", al.mediaAluno()),
+                    al.getSituacao()
                 });
             }
             double mediaSala = turma.mediaTurma(turma.alunos);
@@ -97,17 +97,17 @@ public class uRelatorioAlunos extends javax.swing.JFrame {
 
         tbRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "1° Nota", "2° Nota", "Média"
+                "ID", "Nome", "1° Nota", "2° Nota", "Média", "Situação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,25 +116,29 @@ public class uRelatorioAlunos extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbRelatorio);
         if (tbRelatorio.getColumnModel().getColumnCount() > 0) {
+            tbRelatorio.getColumnModel().getColumn(0).setResizable(false);
             tbRelatorio.getColumnModel().getColumn(1).setResizable(false);
             tbRelatorio.getColumnModel().getColumn(2).setResizable(false);
+            tbRelatorio.getColumnModel().getColumn(3).setResizable(false);
+            tbRelatorio.getColumnModel().getColumn(4).setResizable(false);
+            tbRelatorio.getColumnModel().getColumn(5).setResizable(false);
         }
 
         lblMediaSala.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblMediaSala.setText("Média da sala:");
+        lblMediaSala.setAlignmentX(0.5F);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(lblMediaSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(6, 6, 6)
+                        .addComponent(lblMediaSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -142,8 +146,8 @@ public class uRelatorioAlunos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMediaSala)
-                .addGap(0, 154, Short.MAX_VALUE))
+                .addComponent(lblMediaSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,10 +156,9 @@ public class uRelatorioAlunos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
