@@ -22,7 +22,6 @@ public class Aluno {
             return "em Recuperação";
        
         return "Aprovado(a)";
-        
     }
     
     public double[] getNotas() { 
