@@ -43,7 +43,6 @@ public class uRelatorioUsuarios extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setName("Relatório Usuarios"); // NOI18N
         setResizable(false);
 
         taMostrarUsuarios.setEditable(false);

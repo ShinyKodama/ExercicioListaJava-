@@ -128,6 +128,21 @@ public class uMainPage extends javax.swing.JFrame {
             int idadeUsuario = Integer.parseInt(tfIdadeUsuario.getText());
             String generoUsuario = String.valueOf(cbGeneroUsuario.getSelectedItem());
             
+            if (tfNomeUsuario.getText().trim().isEmpty() || tfIdadeUsuario.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(
+                        this, 
+                        "Preencha todos os campos corretamente!",
+                        "ERRO",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+                tfNomeUsuario.setText("");
+                tfIdadeUsuario.setText("");
+                
+                return;
+            }
+                
+            
             if (users.size() < 8) {
                 Usuario usuario = new Usuario(nomeUsuario, idadeUsuario, generoUsuario);
                 users.add(usuario);
